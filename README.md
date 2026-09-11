@@ -107,7 +107,7 @@ other engine, and it does not integrate with Prisma, Alembic, Django, Rails or
 any other migration framework. It reads a `.db` file and a `.sql` file.
 
 This is a milestone-1 foundation, not a finished product. It is not production
-software and has not been released anywhere.
+software.
 
 ## What it detects
 
