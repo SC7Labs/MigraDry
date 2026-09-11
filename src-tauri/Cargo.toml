@@ -1,0 +1,37 @@
+[package]
+name = "migradry"
+version = "0.1.0"
+description = "Preview a SQLite migration before it touches your database."
+authors = ["MigraDry Contributors"]
+license = "MIT"
+edition = "2021"
+repository = "https://github.com/SC7Labs/MigraDry"
+# The floor imposed by the dependency graph, not a guess: `time`, `plist` and
+# `darling` (pulled in by the Tauri bundler) each declare 1.88.
+rust-version = "1.88"
+
+[lib]
+# The `_lib` suffix keeps the library name distinct from the binary name.
+# See https://github.com/rust-lang/cargo/issues/8519
+name = "migradry_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# `bundled` pins a known-modern SQLite so the backup API and pragma functions
+# are always available; `backup` exposes the SQLite Online Backup API used to
+# take a consistent, WAL-aware snapshot; `limits` lets us disable ATTACH on the
+# connection that executes untrusted migration SQL.
+rusqlite = { version = "0.40", features = ["bundled", "backup", "limits", "hooks"] }
+sha2 = "0.11"
+tempfile = "3"
+thiserror = "2"
+
+[dev-dependencies]
+rusqlite = { version = "0.40", features = ["bundled", "backup", "limits", "hooks"] }
