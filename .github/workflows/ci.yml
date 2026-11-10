@@ -14,7 +14,7 @@ name: CI
 
 on:
   push:
-    branches: ["**"]
+    branches: [main]
   pull_request:
 
 # Least privilege: nothing here writes to the repository, and no job needs a
