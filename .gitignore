@@ -36,3 +36,6 @@ coverage
 *.db-shm
 *.sqlite
 *.sqlite3
+
+# Local private agent handoff
+.agent/
